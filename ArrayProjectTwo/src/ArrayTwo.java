@@ -13,6 +13,8 @@
 // ***********************************************************************
 
 import javax.swing.*;
+
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 
 public class ArrayTwo
@@ -30,6 +32,7 @@ public class ArrayTwo
 		list = new int[MAX];
 		list[0] = 0;
 		list[1] = 1;
+		String out;
 		
 	// ***** create objects *****
 		
@@ -42,6 +45,7 @@ public class ArrayTwo
 	// ***** Print Banner *****
 	
 		Printer.printBanner("ArrayExercise 1 Q6");
+		out = "\n";
 		
 	// ***** get input *****
 	
@@ -55,13 +59,58 @@ public class ArrayTwo
 			list[i] = list[i-1] + list[i-2];
 		}
 		
+int[] temp_list = new int[3];
+		
+		int j = 0;
+		
+		for (int i = 0; i < 5; i++) {
+			if (j < 3){
+				temp_list[j] = list[i];
+				j++;
+			}
+			else {
+				out += temp_list[0] + "   	" + temp_list[1] + "   	" + temp_list[2] + "\n";
+				temp_list = new int[3];
+				j = 0;
+				temp_list[j] = list[i];
+				j++;
+			}
+		}
+		
+		for (int i = MAX - 6; i < MAX; i++) {
+			if (j < 3){
+				temp_list[j] = list[i];
+				j++;
+			}
+			else {
+				out += temp_list[0] + "   	" + temp_list[1] + "   	" + temp_list[2] + "\n";
+				temp_list = new int[3];
+				j = 0;
+				temp_list[j] = list[i];
+				j++;
+			}
+		}
+		
+		for (int i = 0; i < j - 1; i++) {
+			out += temp_list[i] + "   	";
+		}
+		out += "\n";
+		
 	// ***** output *****
 	
 		// all formatted ouput is printed in this section
+		
+		System.out.println(out);
+		out += "\n" + Printer.getClosing();
+		output(Printer.getBanner("ArrayExercise 1 Q6") + out);
 		
 	// ***** closing message *****
 	
 		Printer.printClosing();
 	
 	}  // end main	
+	
+	public static void output(String out) {
+		JOptionPane.showMessageDialog(null, out);
+	}  // end output
 }  // end class
